@@ -1,0 +1,6 @@
+GET http://localhost:4004/admin/Books
+Authorization: Basic alice:
+
+###
+POST http://localhost:4004/admin/Authors
+Authorization: Basic alice:
