@@ -2,13 +2,13 @@ const cds = require('@sap/cds/lib')
 const { init } = require("express/lib/application")
 class CatalogService extends cds.ApplicationService {
     init() {
-        this.on('READ', 'Files', async (req) => {
-            const { Files } = this.entities;
-            let data = await cds.tx(req).run(SELECT.from(Files))
+        // this.on('READ', 'Files', async (req) => {
+        //     const { Files } = this.entities;
+        //     let data = await cds.tx(req).run(SELECT.from(Files))
 
-            console.log(data)
-            return data;
-        })
+        //     console.log(data)
+        //     return data;
+        // })
         const { Books } = cds.entities('my.bookshop')
         const { ListOfBooks } = this.entities
 

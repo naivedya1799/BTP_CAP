@@ -1,7 +1,30 @@
-<mvc:View controllerName="freestyle.controller.View1"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+<mvc:View xmlns:m="sap.m" controllerName="freestyle.controller.View1" xmlns="sap.ui.webc.main" xmlns:fiori="sap.ui.webc.fiori" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" height="100%">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%" id="Vertical">
+		<l:content>
+			
+			<Label id="TextAreaGrowingLabel1" text="Base 64 for Picture and PDF" labelFor="TextAreaGrowing" />
+			<TextArea
+				id="Field1"
+				placeholder="Enter Base64"
+				growing="true"
+				growingMaxLines="10"
+				ariaLabelledBy="TextAreaGrowingLabel"/>
+			<Label id="TextAreaGrowingLabel2" text="Media Type" labelFor="TextAreaGrowing" />
+			<TextArea
+				id="Field2"
+				placeholder="Enter Media Type"
+				growing="true"
+				growingMaxLines="10"
+				ariaLabelledBy="TextAreaGrowingLabel"/>
+            <Label id="TextAreaGrowingLabel3" text="Base 64 for File" labelFor="TextAreaGrowing" />
+			<TextArea
+				id="Field3"
+				placeholder="Enter Base64"
+				growing="true"
+				growingMaxLines="10"
+				ariaLabelledBy="TextAreaGrowingLabel"/>
+            <m:Button id="Sumbit" text="Submit" press="onPostdata"></m:Button>
+			
+		</l:content>
+	</l:VerticalLayout>
 </mvc:View>

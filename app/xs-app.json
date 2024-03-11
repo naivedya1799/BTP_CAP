@@ -1,30 +1,10 @@
 {
-  "welcomeFile": "/index.html",
   "authenticationMethod": "route",
   "logout": {
     "logoutEndpoint": "/app-logout",
     "logoutPage": "/"
   },
   "routes": [
-    {
-      "source": "^/odata/(.*)$",
-      "target": "/odata/$1",
-      "destination": "BTP_CAP-srv-api",
-      "authenticationType": "xsuaa",
-      "csrfProtection": false
-    },
-    {
-      "source": "^/resources/(.*)$",
-      "target": "/resources/$1",
-      "authenticationType": "none",
-      "destination": "ui5"
-    },
-    {
-      "source": "^/test-resources/(.*)$",
-      "target": "/test-resources/$1",
-      "authenticationType": "none",
-      "destination": "ui5"
-    },
     {
       "source": "^/app/(.*)$",
       "target": "$1",
@@ -43,9 +23,10 @@
       "service": "sap-approuter-userapi"
     },
     {
-      "source": "^(.*)$",
+      "source": "^/(.*)$",
       "target": "$1",
-      "service": "html5-apps-repo-rt",
+      "destination": "srv-api",
+      "csrfProtection": true,
       "authenticationType": "xsuaa"
     }
   ]

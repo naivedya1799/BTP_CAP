@@ -1,11 +1,15 @@
 {
-  "xsappname": "btp_cap",
+  "xsappname": "BTP_CAP",
   "tenant-mode": "dedicated",
   "description": "Security profile of called application",
   "scopes": [
     {
       "name": "uaa.user",
       "description": "UAA"
+    },
+    {
+      "name": "$XSAPPNAME.admin",
+      "description": "admin"
     }
   ],
   "role-templates": [
@@ -15,6 +19,24 @@
       "scope-references": [
         "uaa.user"
       ]
+    },
+    {
+      "name": "admin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.admin"
+      ],
+      "attribute-references": []
     }
-  ]
+  ],
+  "oauth2-configuration": {
+    "credential-types": [
+      "binding-secret",
+      "x509"
+    ],
+    "redirect-uris": [
+      "https://*.applicationstudio.cloud.sap/**"
+    ]
+  },
+  "attributes": []
 }
