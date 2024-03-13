@@ -1,4 +1,4 @@
-<mvc:View xmlns:m="sap.m" controllerName="freestyle.controller.View1" xmlns="sap.ui.webc.main" xmlns:fiori="sap.ui.webc.fiori" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" height="100%">
+<mvc:View xmlns:m="sap.m" xmlns:u="sap.ui.unified" controllerName="freestyle.controller.View1" xmlns="sap.ui.webc.main" xmlns:fiori="sap.ui.webc.fiori" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" height="100%">
 	<l:VerticalLayout class="sapUiContentPadding" width="100%" id="Vertical">
 		<l:content>
 			
@@ -24,7 +24,27 @@
 				growingMaxLines="10"
 				ariaLabelledBy="TextAreaGrowingLabel"/>
             <m:Button id="Sumbit" text="Submit" press="onPostdata"></m:Button>
-			
+			<!-- <FileUploader
+                    id="fileUploader"
+                    name="myFileUpload"
+                    buttonText="Upload XLSX File"
+                    fileType="XLSX"
+                    change="onFileUpload"
+                />
+					<m:Button
+					id="button"
+					text="Upload File"
+					press="handleUploadPress"/> -->
+				<FileUploader
+					id="fileUploader1"
+					name="fileUploader"
+					width="400px"
+					placeholder="Choose CSV File"
+					fileType="csv"
+					change="onFileUpload"
+				/>
+				<m:Button text="Parse CSV" press="onParseCSV"/>
+				<m:Page id="pageId"></m:Page>
 		</l:content>
 	</l:VerticalLayout>
 </mvc:View>

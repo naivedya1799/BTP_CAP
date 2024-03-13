@@ -64,12 +64,14 @@
     }
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.120.9",
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
+        "sap.ui.layout": {},
+				"sap.ui.unified": {},
         "sap.f": {},
         "sap.suite.ui.generic.template": {},
         "sap.ui.comp": {},

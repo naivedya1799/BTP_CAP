@@ -1,0 +1,42 @@
+ var numColumns = headers.length;
+                var tableData = [];
+                for (var i = 1; i < rows.length; i++) {
+                    var row = rows[i].split(',');
+                    var rowData = {};
+                    for (var j = 0; j < numColumns; j++) {
+                        rowData["column" + j] = row[j] || ""; // Populate data for each column
+                    }
+                    tableData.push(rowData);
+                }
+
+                // Create a JSON model and set the table data
+                var oModel = new sap.ui.model.json.JSONModel();
+                oModel.setData({
+                    columns: headers,
+                    rows: tableData
+                });
+
+                // Create the table
+                var oTable = new sap.m.Table({
+                    columns: headers.map(function (header) {
+                        return new sap.m.Column({ header: new sap.m.Text({ text: header }) });
+                    })
+                });
+
+                // Bind the table rows to the model
+                oTable.bindItems("/Rows", new sap.m.ColumnListItem({
+                    cells: headers.map(function (header, index) {
+                        return new sap.m.Text({ text: "{column" + index + "}" });
+                    })
+                }));
+
+                // Set the model to the view
+                this.getView().setModel(oModel, "tableModel");
+
+                // Add the table to the view
+                var oPage = this.getView().byId("pageId"); // Replace "pageId" with the ID of your page
+                oPage.addContent(oTable);
+                ---------------------------------------------------------------------------------------
+
+
+                

@@ -23,6 +23,14 @@
                     "annotations": [],
                     "odataVersion": "4.0"
                 }
+            },
+            "attachments": {
+                "uri": "odata/v4/attachments/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "odataVersion": "4.0"
+                }
             }
         },
         "crossNavigation": {
@@ -56,12 +64,14 @@
         }
     },
     "sap.ui5": {
-        "flexEnabled": true,
+        "flexEnabled": false,
         "dependencies": {
             "minUI5Version": "1.120.9",
             "libs": {
                 "sap.m": {},
                 "sap.ui.core": {},
+                "sap.ui.layout": {},
+                "sap.ui.unified": {},
                 "sap.f": {},
                 "sap.suite.ui.generic.template": {},
                 "sap.ui.comp": {},
@@ -83,6 +93,16 @@
             },
             "": {
                 "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "attachments": {
+                "dataSource": "attachments",
                 "preload": true,
                 "settings": {
                     "synchronizationMode": "None",

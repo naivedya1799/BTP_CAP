@@ -2,6 +2,8 @@ using my.bookshop as my from '../db/data-model';
 
 service CatalogService {
     /** For displaying lists of Books */
+    entity Rows        as projection on my.Rows;
+
     @readonly
     entity ListOfBooks as
         projection on Books
