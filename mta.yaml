@@ -99,21 +99,6 @@ modules:
       supported-platforms:
         []
 
-  - name: BTP_CAP
-    type: approuter.nodejs
-    path: app/
-    parameters:
-      keep-existing-routes: true
-      disk-quota: 256M
-      memory: 256M
-    requires:
-      - name: srv-api
-        group: destinations
-        properties:
-          name: srv-api # must be used in xs-app.json as well
-          url: ~{srv-url}
-          forwardAuthToken: true
-      - name: BTP_CAP-auth
 resources:
   - name: BTP_CAP-auth
     type: org.cloudfoundry.managed-service
