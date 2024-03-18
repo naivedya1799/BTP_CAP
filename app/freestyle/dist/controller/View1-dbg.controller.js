@@ -1,14 +1,9 @@
 
-
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/m/MessageBox",
-    "sap/m/MessageToast",
-    "sap/m/Table",
-    "sap/m/Column",
-    "sap/m/Text",
-
+    "sap/m/MessageToast"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -48,7 +43,7 @@ sap.ui.define([
 
             // Content to base 64
 
-            
+
             // onFileUpload: function (oEvent) {
             //     var oFileUploader = oEvent.getSource();
             //     var aFiles = oEvent.getParameter("files");
@@ -68,45 +63,30 @@ sap.ui.define([
             // },
 
 
-            onFileUpload: function (event) {
-                var file = event.getParameter("files")[0];
-                var reader = new FileReader();
-                var that = this;
-
-                reader.onload = function (e) {
-                    var csvData = e.target.result;
-                    that.onParseCSV(csvData);
-                };
-
-                reader.readAsText(file);
+            handleUploadComplete: function (oEvent) {
+                console.log("/////////////");
+                var sResponse = oEvent.getParameter("response"),
+                    aRegexResult = /\d{4}/.exec(sResponse),
+                    iHttpStatusCode = aRegexResult && parseInt(aRegexResult[0]),
+                    sMessage;
+                console.log(sResponse);
+                if (sResponse) {
+                    sMessage = iHttpStatusCode === 200 ? sResponse + " (Upload Success)" : sResponse + " (Upload Error)";
+                    MessageToast.show(sMessage);
+                }
             },
 
-            onParseCSV: function (csvData) {
-                var rows = csvData.split('\n');
-                console.log("CSV rows:", rows);
+            handleUploadPress: function () {
+                var oFileUploader = this.byId("fileUploader");
+                oFileUploader.checkFileReadable().then(function () {
 
-                var headers = rows[0].split(',');
-                console.log("CSV headers:", headers);
-
-                var columnIndex = headers.findIndex(header => header.trim() === 'columnHeader');
-                console.log("Column index:", columnIndex);
-
-                // if (columnIndex === -1) {
-                //     sap.m.MessageToast.show("Column not found.");
-                //     return;
-                // }
-
-                var columnData = [];
-                for (var i = 1; i < rows.length; i++) {
-                    var row = rows[i].split(',');
-                    // if (row.length > columnIndex) {
-                    //     columnData.push(row[columnIndex]);
-                    // }
-                    columnData.push(row)
-
-                }
-                console.log("Column data:", columnData);
-
+                    const read = oFileUploader.upload();
+                    console.log(read)
+                }, function (error) {
+                    MessageToast.show("The file cannot be read. It may have changed.");
+                }).then(function () {
+                    oFileUploader.clear();
+                });
             }
         });
     });

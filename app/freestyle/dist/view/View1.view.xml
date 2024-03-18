@@ -35,16 +35,15 @@
 					id="button"
 					text="Upload File"
 					press="handleUploadPress"/> -->
-				<FileUploader
-					id="fileUploader1"
-					name="fileUploader"
-					width="400px"
-					placeholder="Choose CSV File"
-					fileType="csv"
-					change="onFileUpload"
-				/>
-				<m:Button text="Parse CSV" press="onParseCSV"/>
-				<m:Page id="pageId"></m:Page>
+				<u:FileUploader
+					id="fileUploader"
+					name="myFileUpload"
+					uploadUrl="upload/"
+					tooltip="Upload your file to the local server"
+					uploadComplete="handleUploadComplete"/>
+			<m:Button
+				text="Upload File"
+				press="handleUploadPress"/>
 		</l:content>
 	</l:VerticalLayout>
 </mvc:View>
