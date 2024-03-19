@@ -49,3 +49,7 @@ entity Genres : sap.common.CodeList {
       children : Composition of many Genres
                    on children.parent = $self;
 }
+
+entity MultipleDatas : cuid {
+  test : Integer
+}

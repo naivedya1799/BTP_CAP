@@ -2,10 +2,10 @@ using my.bookshop as my from '../db/data-model';
 
 service CatalogService {
     /** For displaying lists of Books */
-    entity Rows        as projection on my.Rows;
+    entity Rows          as projection on my.Rows;
 
     @readonly
-    entity ListOfBooks as
+    entity ListOfBooks   as
         projection on Books
         excluding {
             descr
@@ -13,7 +13,7 @@ service CatalogService {
 
     /** For display in details pages */
     @readonly
-    entity Books       as
+    entity Books         as
         projection on my.Books {
             *,
             author.name as author
@@ -36,5 +36,7 @@ service CatalogService {
 }
 
 service Attachments {
-    entity Files       as projection on my.Files
+    entity Files         as projection on my.Files;
+    entity MultipleDatas as projection on my.MultipleDatas
+
 }
