@@ -26,7 +26,7 @@ service CatalogService {
         };
 
     @requires: 'authenticated-user'
-    action submitOrder(book : Books:ID, quantity : Integer) returns {
+    action   submitOrder(book : Books:ID, quantity : Integer) returns {
         stock : Integer
     };
 
@@ -35,6 +35,8 @@ service CatalogService {
         quantity : Integer;
         buyer    : String
     };
+
+    function getVCAPdata()                                    returns array of String;
 }
 
 service Attachments {

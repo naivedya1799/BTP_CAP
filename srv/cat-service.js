@@ -1,4 +1,5 @@
-const cds = require('@sap/cds')
+const cds = require('@sap/cds');
+const { json } = require('stream/consumers');
 
 
 // const { init } = require("express/lib/application")
@@ -66,6 +67,18 @@ module.exports = cds.service.impl(async function () {
     this.on('READ', 'Suppliers', async req => {
         return bupa.run(req.query);
     });
+    this.on('getVCAPdata', async (req) => {
+        const vcapServices = JSON.parse(process.env.VCAP_SERVICES)
+        const servicename = 'xsuaa';
+        if (vcapServices && vcapServices[servicename]) {
+            const serviceCredentials = vcapServices[servicename][0].credentials;
+            // return JSON.stringify(serviceCredentials.apiurl)
+            return JSON.stringify(serviceCredentials)
+        }
+        else {
+            throw new Error('Service not Found');
+        }
+    })
 
 })
 

@@ -9,6 +9,7 @@ modules:
     requires:
       - name: BTP_CAP-auth
       - name: BTP_CAP-db
+      - name: BTP_CAP-destination-service
     provides:
       - name: srv-api
         properties:
