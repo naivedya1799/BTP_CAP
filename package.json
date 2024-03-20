@@ -12,6 +12,7 @@
     "@sap/cds-hana": "^2",
     "@sap/xsenv": "^4.2.0",
     "@sap/xssec": "^3",
+    "cdse": "^1.1.12",
     "express": "^4",
     "passport": "^0.7.0",
     "xlsx": "^0.18.5"
@@ -41,12 +42,25 @@
           "credentials": {
             "url": "https://services.odata.org/Experimental/OData/OData.svc"
           }
+        },
+        "[production]": {
+          "credentials": {
+            "destination": "NorthWind"
+          }
         }
       },
       "API_BUSINESS_PARTNER": {
         "kind": "odata-v2",
         "model": "srv/external/API_BUSINESS_PARTNER",
         "[sandbox]": {
+          "credentials": {
+            "headers": {
+              "APIKey": "Pb3kSD9qGYsvf4rYBNwyQC1CvP7oTEFT"
+            },
+            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER/"
+          }
+        },
+        "[production]": {
           "credentials": {
             "headers": {
               "APIKey": "Pb3kSD9qGYsvf4rYBNwyQC1CvP7oTEFT"

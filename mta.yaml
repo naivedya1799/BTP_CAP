@@ -128,6 +128,11 @@ resources:
                 Type: HTTP
                 URL: https://ui5.sap.com
               - Authentication: NoAuthentication
+                Name: NorthWind
+                ProxyType: Internet
+                Type: HTTP
+                URL: http://services.odata.org/Experimental/OData/OData.svc
+              - Authentication: NoAuthentication
                 HTML5.DynamicDestination: true
                 HTML5.ForwardAuthToken: true
                 Name: BTP_CAP-srv-api
