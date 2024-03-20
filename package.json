@@ -1,40 +1,63 @@
 {
-    "name": "BTP_CAP",
-    "version": "1.0.0",
-    "description": "A simple CAP project.",
-    "repository": "<Add your repository here>",
-    "license": "UNLICENSED",
-    "private": true,
-    "dependencies": {
-        "@sap/cds": "^7",
-        "@sap/cds-hana": "^2",
-        "@sap/xsenv": "^4.2.0",
-        "@sap/xssec": "^3",
-        "express": "^4",
-        "passport": "^0.7.0",
-        "xlsx": "^0.18.5"
-    },
-    "devDependencies": {
-        "@cap-js/sqlite": "^1",
-        "@sap/cds-dk": "^7",
-        "@sap/ux-specification": "^1.120.5",
-        "rimraf": "^3.0.2"
-    },
-    "scripts": {
-        "start": "cds-serve",
-        "watch-listreport": "cds watch --open listreport/webapp/index.html?sap-ui-xx-viewCache=false",
-        "undeploy": "cf undeploy BTP_CAP --delete-services --delete-service-keys --delete-service-brokers",
-        "build": "rimraf resources mta_archives && mbt build --mtar archive",
-        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-        "watch-freestyle": "cds watch --open freestyle/webapp/index.html?sap-ui-xx-viewCache=false"
-    },
-    "cds": {
-        "requires": {
-            "auth": "xsuaa",
-            "db": "hana"
+  "name": "BTP_CAP",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap-cloud-sdk/http-client": "^3.12.1",
+    "@sap-cloud-sdk/util": "^3.12.1",
+    "@sap/cds": "^7",
+    "@sap/cds-hana": "^2",
+    "@sap/xsenv": "^4.2.0",
+    "@sap/xssec": "^3",
+    "express": "^4",
+    "passport": "^0.7.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/cds-dk": "^7",
+    "@sap/ux-specification": "^1.120.5",
+    "rimraf": "^3.0.2"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-listreport": "cds watch --open listreport/webapp/index.html?sap-ui-xx-viewCache=false",
+    "undeploy": "cf undeploy BTP_CAP --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+    "watch-freestyle": "cds watch --open freestyle/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "auth": "xsuaa",
+      "db": "hana",
+      "NorthWind": {
+        "kind": "odata",
+        "model": "srv/external/NorthWind",
+        "[backend]": {
+          "credentials": {
+            "url": "https://services.odata.org/Experimental/OData/OData.svc"
+          }
         }
-    },
-    "sapux": [
-        "app/listreport"
-    ]
+      },
+      "API_BUSINESS_PARTNER": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_BUSINESS_PARTNER",
+        "[sandbox]": {
+          "credentials": {
+            "headers": {
+              "APIKey": "Pb3kSD9qGYsvf4rYBNwyQC1CvP7oTEFT"
+            },
+            "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER/"
+          }
+        }
+      }
+    }
+  },
+  "sapux": [
+    "app/listreport"
+  ]
 }

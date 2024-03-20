@@ -46,6 +46,9 @@ const cds = require('@sap/cds')
 // }
 module.exports = cds.service.impl(async function () {
     const { MultipleDatas } = this.entities;
+    const bupa = await cds.connect.to('API_BUSINESS_PARTNER');
+    const service = await cds.connect.to('NorthWind');
+    const { Products } = this.entities;
     this.on('CREATE', MultipleDatas, async (req) => {
         const test = req.data.test
         await cds.transaction(req).run(
@@ -57,4 +60,13 @@ module.exports = cds.service.impl(async function () {
     this.after('READ', MultipleDatas, each => {
         if (each.test > 5) each.test += ` -- 11% discount!`
     })
+    this.on('READ', Products, request => {
+        return service.tx(request).run(request.query);
+    });
+    this.on('READ', 'Suppliers', async req => {
+        return bupa.run(req.query);
+    });
+
 })
+
+
